@@ -18,3 +18,15 @@ kubectl apply -f .infrastructure/app/deployment.yml
 # Install Ingress Controller
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 # kubectl apply -f .infrastructure/ingress/ingress.yml
+
+# Install Ingress Controller
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+# kubectl apply -f .infrastructure/ingress/ingress.yml
+
+# === Додаємо taints на MySQL-вузли ===
+kubectl taint nodes kind-worker2 app=mysql:NoSchedule
+
+# === Додаємо labels для MySQL та ToDo-вузлів ===
+kubectl label nodes kind-worker2 app=mysql
+kubectl label nodes kind-worker app=todoapp
+
